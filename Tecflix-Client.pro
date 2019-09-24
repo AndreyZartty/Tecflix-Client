@@ -1,3 +1,6 @@
+TEMPLATE = app
+TARGET = curl
+
 QT       += core gui multimedia multimediawidgets webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -16,14 +19,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    curlobj.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    movie.cpp \
+    pagina.cpp
 
 HEADERS += \
-    mainwindow.h
+    curlobj.h \
+    mainwindow.h \
+    movie.h \
+    pagina.h
 
 FORMS += \
     mainwindow.ui
+
+LIBS += -lcurl
+
+# CONFIG += link_pkgconfig
+# PKGCONFIG += curl
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
