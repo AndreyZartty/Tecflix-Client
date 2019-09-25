@@ -6,6 +6,14 @@
 #include <QVideoWidget>
 #include <QWebEngineView>
 #include <QUrl>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <cstdlib>
+#include <netinet/in.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +26,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+public slots:
+    void slot_netwManagerFinished(QNetworkReply *reply);
+
+private slots:
+    void on_toolButton_triggered(QAction *arg1);
 
 private:
     Ui::MainWindow *ui;

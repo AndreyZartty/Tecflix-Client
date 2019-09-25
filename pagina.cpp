@@ -1,6 +1,6 @@
 #include "pagina.h"
 
-/// Getters y Setters
+// Getters y Setters
 
 Movie *Pagina::getPelicula1()
 {
