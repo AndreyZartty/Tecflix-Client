@@ -30,7 +30,7 @@ public slots:
     void slot_netwManagerFinished(QNetworkReply *reply);
 
 private slots:
-    void on_toolButton_triggered(QAction *arg1);
+    void on_BotonPrueba_clicked();
 
 private:
     Ui::MainWindow *ui;

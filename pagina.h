@@ -6,6 +6,8 @@
 class Pagina
 {
 public:
+    Pagina();
+
     Movie *getPelicula1() ;
     void setPelicula1(Movie *Pelicula);
 
@@ -30,9 +32,6 @@ public:
     Movie *getPelicula8();
     void setPelicula8(Movie *Pelicula);
 
-    Movie *getPelicula9();
-    void setPelicula9(Movie *Pelicula);
-
     void addMovie(Movie* movie);
 
 private:
@@ -44,8 +43,6 @@ private:
     Movie* pelicula6 = nullptr;
     Movie* pelicula7 = nullptr;
     Movie* pelicula8 = nullptr;
-    Movie* pelicula9 = nullptr;
-
 };
 
 #endif // PAGINA_H

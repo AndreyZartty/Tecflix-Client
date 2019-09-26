@@ -2,7 +2,7 @@
 
 /// Constructor
 
-Movie::Movie(string Color, string Director, string Criticos, string Duracion, string LikesDirector, string LikesActor3, string Actor2, string LikesActor1, string Taquilla, string Generos, string Actor1, string Titulo, string VotosUsuarios, string LikesCast, string Actor3, string Facenumber, string Keywords, string LinkImdb, string Usuarios, string Idioma, string Pais, string Clasificacion, string Presupuesto, string Year, string LikesActor2, string Puntuacion, string AspectRatio, string LikesPelicula)
+Movie::Movie(QString Color, QString Director, QString Criticos, QString Duracion, QString LikesDirector, QString LikesActor3, QString Actor2, QString LikesActor1, QString Taquilla, QString Generos, QString Actor1, QString Titulo, QString VotosUsuarios, QString LikesCast, QString Actor3, QString Facenumber, QString Keywords, QString LinkImdb, QString Usuarios, QString Idioma, QString Pais, QString Clasificacion, QString Presupuesto, QString Year, QString LikesActor2, QString Puntuacion, QString AspectRatio, QString LikesPelicula)
 {
     setColor(Color);
     setDirector(Director);
@@ -34,332 +34,478 @@ Movie::Movie(string Color, string Director, string Criticos, string Duracion, st
     setFB_likes_pelicula(LikesPelicula);
 }
 
+Movie::Movie(string Line)
+{
+    string coma = ",";
+    size_t index = Line.find(coma);
+    setColor(QString::fromStdString(Line.substr(0,index)));
+
+    string temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setDirector(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setCriticosQueRevisaron(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setDuracion(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setFB_likes_director(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setFB_likes_actor3(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setActor2(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setFB_likes_actor1(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setTaquilla(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setGeneros(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setActor1(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setTitulo(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setVotosDeUsuarios(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setFB_likes_cast(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setActor3(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setFacenumberEnPoster(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setKeywords(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setImdbLink(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setUsersQueRevisaron(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setIdioma(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setPais(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setClasificacion(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setPresupuesto(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setYear(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setFB_likes_actor2(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setPuntuacion_imdb(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    index = Line.find(coma);
+    setAspectRatio(QString::fromStdString(Line.substr(0,index)));
+
+    temporal = Line.substr(index+1);
+    Line = temporal;
+    setFB_likes_pelicula(QString::fromStdString(Line.substr(0,index)));
+}
+
 /// Getters y Setters
 
-string Movie::getColor()
+QString Movie::getColor()
 {
     return color;
 }
 
-void Movie::setColor(string Color)
+void Movie::setColor(QString Color)
 {
     color = Color;
 }
 
-string Movie::getDirector()
+QString Movie::getDirector()
 {
     return director;
 }
 
-void Movie::setDirector(string Director)
+void Movie::setDirector(QString Director)
 {
     director = Director;
 }
 
-string Movie::getCriticosQueRevisaron()
+QString Movie::getCriticosQueRevisaron()
 {
     return criticosQueRevisaron;
 }
 
-void Movie::setCriticosQueRevisaron(string Criticos)
+void Movie::setCriticosQueRevisaron(QString Criticos)
 {
     criticosQueRevisaron = Criticos;
 }
 
-string Movie::getDuracion()
+QString Movie::getDuracion()
 {
     return duracion;
 }
 
-void Movie::setDuracion(string Duracion)
+void Movie::setDuracion(QString Duracion)
 {
     duracion = Duracion;
 }
 
-string Movie::getFB_likes_director()
+QString Movie::getFB_likes_director()
 {
     return FB_likes_director;
 }
 
-void Movie::setFB_likes_director(string LikesDirector)
+void Movie::setFB_likes_director(QString LikesDirector)
 {
     FB_likes_director = LikesDirector;
 }
 
-string Movie::getFB_likes_actor3()
+QString Movie::getFB_likes_actor3()
 {
     return FB_likes_actor3;
 }
 
-void Movie::setFB_likes_actor3(string LikesActor3)
+void Movie::setFB_likes_actor3(QString LikesActor3)
 {
     FB_likes_actor3 = LikesActor3;
 }
 
-string Movie::getActor2()
+QString Movie::getActor2()
 {
     return actor2;
 }
 
-void Movie::setActor2(string Actor2)
+void Movie::setActor2(QString Actor2)
 {
     actor2 = Actor2;
 }
 
-string Movie::getFB_likes_actor1()
+QString Movie::getFB_likes_actor1()
 {
     return FB_likes_actor1;
 }
 
-void Movie::setFB_likes_actor1(string LikesActor1)
+void Movie::setFB_likes_actor1(QString LikesActor1)
 {
     FB_likes_actor1 = LikesActor1;
 }
 
-string Movie::getTaquilla()
+QString Movie::getTaquilla()
 {
     return taquilla;
 }
 
-void Movie::setTaquilla(string Taquilla)
+void Movie::setTaquilla(QString Taquilla)
 {
     taquilla = Taquilla;
 }
 
-string Movie::getGeneros()
+QString Movie::getGeneros()
 {
     return generos;
 }
 
-void Movie::setGeneros(string Generos)
+void Movie::setGeneros(QString Generos)
 {
     generos = Generos;
 }
 
-string Movie::getActor1()
+QString Movie::getActor1()
 {
     return actor1;
 }
 
-void Movie::setActor1(string Actor1)
+void Movie::setActor1(QString Actor1)
 {
     actor1 = Actor1;
 }
 
-string Movie::getTitulo()
+QString Movie::getTitulo()
 {
     return titulo;
 }
 
-void Movie::setTitulo(string Titulo)
+void Movie::setTitulo(QString Titulo)
 {
     titulo = Titulo;
 }
 
-string Movie::getVotosDeUsuarios()
+QString Movie::getVotosDeUsuarios()
 {
     return votosDeUsuarios;
 }
 
-void Movie::setVotosDeUsuarios(string VotosUsuarios)
+void Movie::setVotosDeUsuarios(QString VotosUsuarios)
 {
     votosDeUsuarios = VotosUsuarios;
 }
 
-string Movie::getFB_likes_cast()
+QString Movie::getFB_likes_cast()
 {
     return FB_likes_cast;
 }
 
-void Movie::setFB_likes_cast(string LikesCast)
+void Movie::setFB_likes_cast(QString LikesCast)
 {
     FB_likes_cast = LikesCast;
 }
 
-string Movie::getActor3()
+QString Movie::getActor3()
 {
     return actor3;
 }
 
-void Movie::setActor3(string Actor3)
+void Movie::setActor3(QString Actor3)
 {
     actor3 = Actor3;
 }
 
-string Movie::getFacenumberEnPoster()
+QString Movie::getFacenumberEnPoster()
 {
     return FacenumberEnPoster;
 }
 
-void Movie::setFacenumberEnPoster(string Facenumber)
+void Movie::setFacenumberEnPoster(QString Facenumber)
 {
     FacenumberEnPoster = Facenumber;
 }
 
-string Movie::getKeywords()
+QString Movie::getKeywords()
 {
     return keywords;
 }
 
-void Movie::setKeywords(string Keywords)
+void Movie::setKeywords(QString Keywords)
 {
     keywords = Keywords;
 }
 
-string Movie::getImdbLink()
+QString Movie::getImdbLink()
 {
     return imdbLink;
 }
 
-void Movie::setImdbLink(string LinkImdb)
+void Movie::setImdbLink(QString LinkImdb)
 {
     imdbLink = LinkImdb;
     setPoster_Trailer(imdbLink);
 }
 
-string Movie::getUsersQueRevisaron()
+QString Movie::getUsersQueRevisaron()
 {
     return usersQueRevisaron;
 }
 
-void Movie::setUsersQueRevisaron(string Usuarios)
+void Movie::setUsersQueRevisaron(QString Usuarios)
 {
     usersQueRevisaron = Usuarios;
 }
 
-string Movie::getIdioma()
+QString Movie::getIdioma()
 {
     return idioma;
 }
 
-void Movie::setIdioma(string Idioma)
+void Movie::setIdioma(QString Idioma)
 {
     idioma = Idioma;
 }
 
-string Movie::getPais()
+QString Movie::getPais()
 {
     return pais;
 }
 
-void Movie::setPais(string Pais)
+void Movie::setPais(QString Pais)
 {
     pais = Pais;
 }
 
-string Movie::getClasificacion()
+QString Movie::getClasificacion()
 {
     return clasificacion;
 }
 
-void Movie::setClasificacion(string Clasificacion)
+void Movie::setClasificacion(QString Clasificacion)
 {
     clasificacion = Clasificacion;
 }
 
-string Movie::getPresupuesto()
+QString Movie::getPresupuesto()
 {
     return presupuesto;
 }
 
-void Movie::setPresupuesto(string Presupuesto)
+void Movie::setPresupuesto(QString Presupuesto)
 {
     presupuesto = Presupuesto;
 }
 
-string Movie::getYear()
+QString Movie::getYear()
 {
     return year;
 }
 
-void Movie::setYear(string Year)
+void Movie::setYear(QString Year)
 {
     year = Year;
 }
 
-string Movie::getFB_likes_actor2()
+QString Movie::getFB_likes_actor2()
 {
     return FB_likes_actor2;
 }
 
-void Movie::setFB_likes_actor2(string LikesActor2)
+void Movie::setFB_likes_actor2(QString LikesActor2)
 {
     FB_likes_actor2 = LikesActor2;
 }
 
-string Movie::getPuntuacion_imdb()
+QString Movie::getPuntuacion_imdb()
 {
     return puntuacion_imdb;
 }
 
-void Movie::setPuntuacion_imdb(string Puntuacion)
+void Movie::setPuntuacion_imdb(QString Puntuacion)
 {
     puntuacion_imdb = Puntuacion;
 }
 
-string Movie::getAspectRatio()
+QString Movie::getAspectRatio()
 {
     return aspectRatio;
 }
 
-void Movie::setAspectRatio(string AspectRatio)
+void Movie::setAspectRatio(QString AspectRatio)
 {
     aspectRatio = AspectRatio;
 }
 
-string Movie::getFB_likes_pelicula()
+QString Movie::getFB_likes_pelicula()
 {
     return FB_likes_pelicula;
 }
 
-void Movie::setFB_likes_pelicula(string LikesPelicula)
+void Movie::setFB_likes_pelicula(QString LikesPelicula)
 {
     FB_likes_pelicula = LikesPelicula;
 }
 
-string Movie::getTrailerLink()
+QString Movie::getTrailerLink()
 {
     return trailerLink;
 }
 
-void Movie::setTrailerLink(string Trailer)
+void Movie::setTrailerLink(QString Trailer)
 {
     trailerLink = Trailer;
 }
 
-string Movie::getPosterLink()
+QString Movie::getPosterLink()
 {
     return posterLink;
 }
 
-void Movie::setPosterLink(string Poster)
+void Movie::setPosterLink(QString Poster)
 {
     posterLink = Poster;
 }
 
 /// Metodo para extraer los links del poster y el trailer del HTML
 
-void Movie::setPoster_Trailer(string link)
+void Movie::setPoster_Trailer(QString link)
 {
-    CurlObj dataHTML(link);
+    CurlObj dataHTML(link.toStdString());
     string html = dataHTML.getData();
 
     string search = "embedUrl";
     size_t index = html.find(search);
-    html = html.substr(index);
 
-    search = "/";
-    index = html.find(search);
-    html = html.substr(index);
+    if(index > html.size()){
+        setTrailerLink("No hay trailer por mostrar");
+    }
+    else{
+        html = html.substr(index);
 
-    search = ",";
-    index = html.find(search);
+        search = "/";
+        index = html.find(search);
+        html = html.substr(index);
 
-    string tlink = "https://www.imdb.com" + html.substr(0,index-1);
-    setTrailerLink(tlink);
+        search = ",";
+        index = html.find(search);
 
-    html = html.substr(index);
+        string tlink = "https://www.imdb.com" + html.substr(0,index-1);
+        setTrailerLink(QString::fromStdString(tlink));
 
+        html = html.substr(index);
+    }
     search = "<img alt=";
     index = html.find(search);
     html = html.substr(index);
@@ -375,5 +521,5 @@ void Movie::setPoster_Trailer(string link)
     search = " />";
     index = html.find(search);
     html = html.substr(0, index-1);
-    setPosterLink(html);
+    setPosterLink(QString::fromStdString(html));
 }

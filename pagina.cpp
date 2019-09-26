@@ -2,6 +2,10 @@
 
 // Getters y Setters
 
+Pagina::Pagina()
+{
+}
+
 Movie *Pagina::getPelicula1()
 {
     return pelicula1;
@@ -82,15 +86,6 @@ void Pagina::setPelicula8(Movie *Pelicula)
     pelicula8 = Pelicula;
 }
 
-Movie *Pagina::getPelicula9()
-{
-    return pelicula9;
-}
-
-void Pagina::setPelicula9(Movie *Pelicula)
-{
-    pelicula9 = Pelicula;
-}
 
 
 /// Metodo para agregar una pelicula por orden
@@ -120,9 +115,6 @@ void Pagina::addMovie(Movie *movie)
     }
     else if(pelicula8 == nullptr){
         setPelicula8(movie);
-    }
-    else if(pelicula9 == nullptr){
-        setPelicula9(movie);
     }
     else{
         cout << "No se pueden agregar mas peliculas" << endl;

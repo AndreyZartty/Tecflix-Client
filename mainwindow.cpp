@@ -1,5 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "AdminPages.h"
+#include "ui_prueba.h"
+#include <iostream>
+#include <QThread>
+
+using namespace std;
 
 void MainWindow::slot_netwManagerFinished(QNetworkReply *reply)
 {
@@ -9,13 +15,12 @@ void MainWindow::slot_netwManagerFinished(QNetworkReply *reply)
     }
     QByteArray jpegData = reply->readAll();
     QPixmap pixmap;
-    pixmap.loadFromData(jpegData);
+    pixmap.loadFromData(jpegData);    
     QIcon ButtonIcon(pixmap);
     ui->BotonPrueba->setIcon(ButtonIcon);
     ui->BotonPrueba->setIconSize(pixmap.rect().size());
     ui->BotonPrueba->setMinimumWidth(pixmap.rect().width());
     ui->BotonPrueba->setMinimumHeight(pixmap.rect().height());
-
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -35,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     QUrl url("https://m.media-amazon.com/images/M/MV5BYWQ3NGM0NzQtZTNhOC00MDZjLTkyZGItZjViZTEzZmFlNDhhXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_UY268_CR9,0,182,268_AL_.jpg");
     QNetworkRequest request(url);
     m_netwManager->get(request);
-
+    QThread::msleep(500);
 }
 
 
@@ -45,3 +50,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_BotonPrueba_clicked()
+{
+    cout << "entro" <<endl;
+    hide();
+    AdminPages *pedo = new AdminPages();
+    pedo->show();
+    cout << "valio" <<endl;
+}

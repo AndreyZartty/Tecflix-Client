@@ -4,137 +4,139 @@
 #include <iostream>
 #include <string>
 #include "curlobj.h"
+#include <QString>
 
 using namespace std;
 
 class Movie
 {
 public:
-    Movie(string Color, string Director, string Criticos, string Duracion, string LikesDirector, string LikesActor3, string Actor2, string LikesActor1, string Taquilla, string Generos, string Actor1, string Titulo, string VotosUsuarios, string LikesCast, string Actor3, string Facenumber, string Keywords, string LinkImdb, string Usuarios, string Idioma, string Pais, string Clasificacion, string Presupuesto, string Year, string LikesActor2, string Puntuacion, string AspectRatio, string LikesPelicula);
+    Movie(QString Color, QString Director, QString Criticos, QString Duracion, QString LikesDirector, QString LikesActor3, QString Actor2, QString LikesActor1, QString Taquilla, QString Generos, QString Actor1, QString Titulo, QString VotosUsuarios, QString LikesCast, QString Actor3, QString Facenumber, QString Keywords, QString LinkImdb, QString Usuarios, QString Idioma, QString Pais, QString Clasificacion, QString Presupuesto, QString Year, QString LikesActor2, QString Puntuacion, QString AspectRatio, QString LikesPelicula);
+    Movie(string Line);
 
-    string getColor() ;
-    void setColor(string Color);
+    QString getColor() ;
+    void setColor(QString Color);
 
-    string getDirector() ;
-    void setDirector(string Director);
+    QString getDirector() ;
+    void setDirector(QString Director);
 
-    string getCriticosQueRevisaron();
-    void setCriticosQueRevisaron(string Criticos);
+    QString getCriticosQueRevisaron();
+    void setCriticosQueRevisaron(QString Criticos);
 
-    string getDuracion();
-    void setDuracion(string Duracion);
+    QString getDuracion();
+    void setDuracion(QString Duracion);
 
-    string getFB_likes_director();
-    void setFB_likes_director(string LikesDirector);
+    QString getFB_likes_director();
+    void setFB_likes_director(QString LikesDirector);
 
-    string getFB_likes_actor3();
-    void setFB_likes_actor3(string LikesActor3);
+    QString getFB_likes_actor3();
+    void setFB_likes_actor3(QString LikesActor3);
 
-    string getActor2();
-    void setActor2(string Actor2);
+    QString getActor2();
+    void setActor2(QString Actor2);
 
-    string getFB_likes_actor1();
-    void setFB_likes_actor1(string LikesActor1);
+    QString getFB_likes_actor1();
+    void setFB_likes_actor1(QString LikesActor1);
 
-    string getTaquilla();
-    void setTaquilla(string Taquilla);
+    QString getTaquilla();
+    void setTaquilla(QString Taquilla);
 
-    string getGeneros();
-    void setGeneros(string Generos);
+    QString getGeneros();
+    void setGeneros(QString Generos);
 
-    string getActor1();
-    void setActor1(string Actor1);
+    QString getActor1();
+    void setActor1(QString Actor1);
 
-    string getTitulo();
-    void setTitulo(string Titulo);
+    QString getTitulo();
+    void setTitulo(QString Titulo);
 
-    string getVotosDeUsuarios();
-    void setVotosDeUsuarios(string VotosUsuarios);
+    QString getVotosDeUsuarios();
+    void setVotosDeUsuarios(QString VotosUsuarios);
 
-    string getFB_likes_cast();
-    void setFB_likes_cast(string LikesCast);
+    QString getFB_likes_cast();
+    void setFB_likes_cast(QString LikesCast);
 
-    string getActor3();
-    void setActor3(string Actor3);
+    QString getActor3();
+    void setActor3(QString Actor3);
 
-    string getFacenumberEnPoster();
-    void setFacenumberEnPoster(string Facenumber);
+    QString getFacenumberEnPoster();
+    void setFacenumberEnPoster(QString Facenumber);
 
-    string getKeywords();
-    void setKeywords(string Keywords);
+    QString getKeywords();
+    void setKeywords(QString Keywords);
 
-    string getImdbLink();
-    void setImdbLink(string LinkImdb);
+    QString getImdbLink();
+    void setImdbLink(QString LinkImdb);
 
-    string getUsersQueRevisaron();
-    void setUsersQueRevisaron(string Usuarios);
+    QString getUsersQueRevisaron();
+    void setUsersQueRevisaron(QString Usuarios);
 
-    string getIdioma();
-    void setIdioma(string Idioma);
+    QString getIdioma();
+    void setIdioma(QString Idioma);
 
-    string getPais();
-    void setPais(string Pais);
+    QString getPais();
+    void setPais(QString Pais);
 
-    string getClasificacion();
-    void setClasificacion(string Clasificacion);
+    QString getClasificacion();
+    void setClasificacion(QString Clasificacion);
 
-    string getPresupuesto();
-    void setPresupuesto(string Presupuesto);
+    QString getPresupuesto();
+    void setPresupuesto(QString Presupuesto);
 
-    string getYear();
-    void setYear(string Year);
+    QString getYear();
+    void setYear(QString Year);
 
-    string getFB_likes_actor2();
-    void setFB_likes_actor2(string LikesActor2);
+    QString getFB_likes_actor2();
+    void setFB_likes_actor2(QString LikesActor2);
 
-    string getPuntuacion_imdb();
-    void setPuntuacion_imdb(string Puntuacion);
+    QString getPuntuacion_imdb();
+    void setPuntuacion_imdb(QString Puntuacion);
 
-    string getAspectRatio();
-    void setAspectRatio(string AspectRatio);
+    QString getAspectRatio();
+    void setAspectRatio(QString AspectRatio);
 
-    string getFB_likes_pelicula();
-    void setFB_likes_pelicula(string LikesPelicula);
+    QString getFB_likes_pelicula();
+    void setFB_likes_pelicula(QString LikesPelicula);
 
-    string getTrailerLink();
-    void setTrailerLink(string Trailer);
+    QString getTrailerLink();
+    void setTrailerLink(QString Trailer);
 
-    string getPosterLink();
-    void setPosterLink(string Poster);
+    QString getPosterLink();
+    void setPosterLink(QString Poster);
 
-    void setPoster_Trailer(string link);
+    void setPoster_Trailer(QString link);
 
 private:
-    string color;
-    string director;
-    string criticosQueRevisaron;
-    string duracion;
-    string FB_likes_director;
-    string FB_likes_actor3;
-    string actor2;
-    string FB_likes_actor1;
-    string taquilla;
-    string generos;
-    string actor1;
-    string titulo;
-    string votosDeUsuarios;
-    string FB_likes_cast;
-    string actor3;
-    string FacenumberEnPoster;
-    string keywords;
-    string imdbLink;
-    string usersQueRevisaron;
-    string idioma;
-    string pais;
-    string clasificacion;
-    string presupuesto;
-    string year;
-    string FB_likes_actor2;
-    string puntuacion_imdb;
-    string aspectRatio;
-    string FB_likes_pelicula;
-    string trailerLink;
-    string posterLink;
+    QString color;
+    QString director;
+    QString criticosQueRevisaron;
+    QString duracion;
+    QString FB_likes_director;
+    QString FB_likes_actor3;
+    QString actor2;
+    QString FB_likes_actor1;
+    QString taquilla;
+    QString generos;
+    QString actor1;
+    QString titulo;
+    QString votosDeUsuarios;
+    QString FB_likes_cast;
+    QString actor3;
+    QString FacenumberEnPoster;
+    QString keywords;
+    QString imdbLink;
+    QString usersQueRevisaron;
+    QString idioma;
+    QString pais;
+    QString clasificacion;
+    QString presupuesto;
+    QString year;
+    QString FB_likes_actor2;
+    QString puntuacion_imdb;
+    QString aspectRatio;
+    QString FB_likes_pelicula;
+    QString trailerLink;
+    QString posterLink;
 };
 
 #endif // MOVIE_H
