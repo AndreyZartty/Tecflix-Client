@@ -24,6 +24,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     movie.cpp \
+    moviepreview.cpp \
     pagina.cpp
 
 HEADERS += \
@@ -31,11 +32,13 @@ HEADERS += \
     curlobj.h \
     mainwindow.h \
     movie.h \
+    moviepreview.h \
     pagina.h
 
 FORMS += \
     AdminPages.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    moviepreview.ui
 
 LIBS += -lcurl
 

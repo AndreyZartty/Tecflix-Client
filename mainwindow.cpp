@@ -53,9 +53,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_BotonPrueba_clicked()
 {
-    cout << "entro" <<endl;
     hide();
-    AdminPages *pedo = new AdminPages();
-    pedo->show();
-    cout << "valio" <<endl;
+    AdminPages *PagPrincipal = new AdminPages();
+    PagPrincipal->show();
 }

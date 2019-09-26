@@ -2,6 +2,7 @@
 #include "ui_AdminPages.h"
 #include <QThread>
 #include <iostream>
+#include "moviepreview.h"
 
 using namespace std;
 
@@ -102,7 +103,6 @@ void AdminPages::loadPages(int mode)
     dataset.open("/home/andreyzartty/Documentos/Proyectos/TECflix/Tecflix-Client/movie_metadata.csv");
     string notAdd;
     getline(dataset,notAdd, '\n');
-    cout << "ESTE NO " << notAdd << endl;
     if (lastMovie==0){
         Pagina *newCurrent = new Pagina();
         int c = 8;
@@ -314,7 +314,9 @@ void AdminPages::slot_netwManagerFinished8(QNetworkReply *reply)
 
 void AdminPages::on_peli1_clicked()
 {
-    cout << "lol xd" << endl;
+    MoviePreview eje;
+    eje.setModal(true);
+    eje.exec();
 }
 
 void AdminPages::on_peli2_clicked()
