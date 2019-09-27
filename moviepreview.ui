@@ -9,61 +9,94 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>745</width>
-    <height>510</height>
+    <width>800</width>
+    <height>530</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>745</width>
-    <height>510</height>
+    <width>800</width>
+    <height>530</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>745</width>
-    <height>510</height>
+    <width>800</width>
+    <height>530</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="Trailer">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>440</y>
-     <width>80</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Trailer</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(30, 33, 30);</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>13</y>
-     <width>281</width>
-     <height>351</height>
+     <y>10</y>
+     <width>321</width>
+     <height>501</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_8">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item>
+       <widget class="QToolButton" name="Poster">
+        <property name="minimumSize">
+         <size>
+          <width>182</width>
+          <height>268</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>182</width>
+          <height>268</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Trailer">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(19, 20, 19);
+ color : rgb(255, 255, 255); </string>
+        </property>
+        <property name="text">
+         <string>Trailer</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>10</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QGraphicsView" name="graphicsView"/>
-          </item>
-          <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="T_Director">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Director:</string>
               </property>
@@ -73,7 +106,10 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="T_Director">
+             <widget class="QLabel" name="Director">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -87,6 +123,9 @@
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QLabel" name="T_Year">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>Año:</string>
             </property>
@@ -97,6 +136,9 @@
           </item>
           <item>
            <widget class="QLabel" name="Year">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -114,6 +156,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
              <widget class="QLabel" name="T_Pais">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Pais:</string>
               </property>
@@ -124,6 +169,9 @@
             </item>
             <item>
              <widget class="QLabel" name="Pais">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -134,7 +182,10 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="T_Calificacion">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Calificacion(imdb):</string>
               </property>
@@ -144,7 +195,10 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="Calificacion">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -160,6 +214,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
              <widget class="QLabel" name="T_Duracion">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Duracion:</string>
               </property>
@@ -170,6 +227,9 @@
             </item>
             <item>
              <widget class="QLabel" name="Duracion">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -181,6 +241,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_14">
             <item>
              <widget class="QLabel" name="T_Generos">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Generos:</string>
               </property>
@@ -191,8 +254,14 @@
             </item>
             <item>
              <widget class="QLabel" name="Generos">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -200,11 +269,17 @@
           </item>
           <item>
            <widget class="QLabel" name="Link">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>Link IMDB</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -216,13 +291,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>313</x>
+     <x>340</x>
      <y>10</y>
-     <width>421</width>
-     <height>489</height>
+     <width>451</width>
+     <height>499</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_15">
@@ -230,14 +305,26 @@
      <widget class="QLabel" name="Titulo">
       <property name="font">
        <font>
+        <family>Pagul</family>
         <pointsize>14</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"> color : rgb(255, 255, 255); </string>
       </property>
       <property name="text">
        <string>Titulo</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -253,6 +340,9 @@
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
                <widget class="QLabel" name="T_Idioma">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>Idioma:</string>
                 </property>
@@ -263,6 +353,9 @@
               </item>
               <item>
                <widget class="QLabel" name="Idioma">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>TextLabel</string>
                 </property>
@@ -277,6 +370,9 @@
              <layout class="QHBoxLayout" name="horizontalLayout_19">
               <item>
                <widget class="QLabel" name="T_Clasificacion">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>Clasificacion:</string>
                 </property>
@@ -287,6 +383,9 @@
               </item>
               <item>
                <widget class="QLabel" name="Clasificacion">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>TextLabel</string>
                 </property>
@@ -301,6 +400,9 @@
              <layout class="QHBoxLayout" name="horizontalLayout_15">
               <item>
                <widget class="QLabel" name="T_Taquilla">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>Taquilla:</string>
                 </property>
@@ -311,6 +413,9 @@
               </item>
               <item>
                <widget class="QLabel" name="Taquilla">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>TextLabel</string>
                 </property>
@@ -323,6 +428,9 @@
             </item>
             <item>
              <widget class="QLabel" name="Color">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Color</string>
               </property>
@@ -337,6 +445,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_20">
             <item>
              <widget class="QLabel" name="T_Presupuesto">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Presupuesto:</string>
               </property>
@@ -347,6 +458,9 @@
             </item>
             <item>
              <widget class="QLabel" name="Presupuesto">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -361,6 +475,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_13">
             <item>
              <widget class="QLabel" name="T_CriticosRevisaron">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Reseñas de Críticos:</string>
               </property>
@@ -371,6 +488,9 @@
             </item>
             <item>
              <widget class="QLabel" name="CriticosRevisaron">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -385,6 +505,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_18">
             <item>
              <widget class="QLabel" name="T_ResenasUsers">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Reseñas de usuarios:</string>
               </property>
@@ -395,6 +518,9 @@
             </item>
             <item>
              <widget class="QLabel" name="UsersReviews">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -409,6 +535,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_16">
             <item>
              <widget class="QLabel" name="T_VotosU">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Cantidad de votos de usuarios:</string>
               </property>
@@ -419,6 +548,9 @@
             </item>
             <item>
              <widget class="QLabel" name="VotosUsuarios">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -433,6 +565,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_22">
             <item>
              <widget class="QLabel" name="T_LikesPeli">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Likes en FB para la pelicula:</string>
               </property>
@@ -443,6 +578,9 @@
             </item>
             <item>
              <widget class="QLabel" name="LikesPelicula">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -457,6 +595,9 @@
            <layout class="QHBoxLayout" name="horizontalLayout_7">
             <item>
              <widget class="QLabel" name="T_FB_Director">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Likes en FB para el director:</string>
               </property>
@@ -467,6 +608,9 @@
             </item>
             <item>
              <widget class="QLabel" name="FB_Like_director">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>TextLabel</string>
               </property>
@@ -483,6 +627,9 @@
          <layout class="QHBoxLayout" name="horizontalLayout_11">
           <item>
            <widget class="QLabel" name="T_Likes_Cast">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>Likes en FB para el cast:</string>
             </property>
@@ -493,6 +640,9 @@
           </item>
           <item>
            <widget class="QLabel" name="Likes_Cast">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -515,6 +665,9 @@
              <layout class="QHBoxLayout" name="horizontalLayout_21">
               <item>
                <widget class="QLabel" name="T_AspectRatio">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>Aspect Ratio:</string>
                 </property>
@@ -525,6 +678,9 @@
               </item>
               <item>
                <widget class="QLabel" name="AspectRatio">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>TextLabel</string>
                 </property>
@@ -539,6 +695,9 @@
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <item>
                <widget class="QLabel" name="T_Actores">
+                <property name="styleSheet">
+                 <string notr="true"> color : rgb(255, 255, 255); </string>
+                </property>
                 <property name="text">
                  <string>Actores</string>
                 </property>
@@ -551,6 +710,9 @@
                <layout class="QHBoxLayout" name="horizontalLayout_9">
                 <item>
                  <widget class="QLabel" name="Actor1">
+                  <property name="styleSheet">
+                   <string notr="true"> color : rgb(255, 255, 255); </string>
+                  </property>
                   <property name="text">
                    <string>Actor1</string>
                   </property>
@@ -561,6 +723,9 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="Actor3">
+                  <property name="styleSheet">
+                   <string notr="true"> color : rgb(255, 255, 255); </string>
+                  </property>
                   <property name="text">
                    <string>Actor2</string>
                   </property>
@@ -571,6 +736,9 @@
                 </item>
                 <item>
                  <widget class="QLabel" name="Actor2">
+                  <property name="styleSheet">
+                   <string notr="true"> color : rgb(255, 255, 255); </string>
+                  </property>
                   <property name="text">
                    <string>Actor3</string>
                   </property>
@@ -585,6 +753,9 @@
             </item>
             <item>
              <widget class="QLabel" name="T_LikesFB">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Likes en FB</string>
               </property>
@@ -598,7 +769,10 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <widget class="QLabel" name="Likes_actor2">
+             <widget class="QLabel" name="Likes_actor1">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Likes Actor1</string>
               </property>
@@ -608,7 +782,10 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="Likes_actor1">
+             <widget class="QLabel" name="Likes_actor2">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Likes Actor2</string>
               </property>
@@ -619,6 +796,9 @@
             </item>
             <item>
              <widget class="QLabel" name="Likes_actor3">
+              <property name="styleSheet">
+               <string notr="true"> color : rgb(255, 255, 255); </string>
+              </property>
               <property name="text">
                <string>Likes Actor3</string>
               </property>
@@ -635,6 +815,9 @@
          <layout class="QHBoxLayout" name="horizontalLayout_17">
           <item>
            <widget class="QLabel" name="T_Facenumber">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>FaceNumber en el poster:</string>
             </property>
@@ -645,6 +828,9 @@
           </item>
           <item>
            <widget class="QLabel" name="Facenumber">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -659,6 +845,9 @@
          <layout class="QHBoxLayout" name="horizontalLayout_12">
           <item>
            <widget class="QLabel" name="T_PClaves">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>Palabras clave:</string>
             </property>
@@ -669,11 +858,17 @@
           </item>
           <item>
            <widget class="QLabel" name="PalabrasClave">
+            <property name="styleSheet">
+             <string notr="true"> color : rgb(255, 255, 255); </string>
+            </property>
             <property name="text">
              <string>TextLabel</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
             </property>
            </widget>
           </item>

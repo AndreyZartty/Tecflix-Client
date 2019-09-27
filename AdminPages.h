@@ -47,6 +47,18 @@ private slots:
 
     void on_PrevPag_clicked();
 
+    void on_peli3_clicked();
+
+    void on_peli4_clicked();
+
+    void on_peli5_clicked();
+
+    void on_peli6_clicked();
+
+    void on_peli7_clicked();
+
+    void on_peli8_clicked();
+
 private:
     Ui::AdminPages *ui;
     Pagina* PAnterior = nullptr;

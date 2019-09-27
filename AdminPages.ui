@@ -25,8 +25,11 @@
   <property name="windowTitle">
    <string>Tecflix</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(30, 33, 30);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -229,6 +232,16 @@
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <widget class="QPushButton" name="PrevPag">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"> color : rgb(255, 255, 255); </string>
+         </property>
          <property name="text">
           <string>Pagina anterior</string>
          </property>
@@ -236,6 +249,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="NextPag">
+         <property name="styleSheet">
+          <string notr="true"> color : rgb(255, 255, 255); </string>
+         </property>
          <property name="text">
           <string>Pagina Siguiente</string>
          </property>

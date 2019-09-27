@@ -11,6 +11,7 @@ AdminPages::AdminPages(QWidget *parent) :
     ui(new Ui::AdminPages)
 {
     ui->setupUi(this);
+    ui->centralwidget->setStyleSheet("QWidget { background-color: rgb(30, 33, 30); }");
 
     loadPages(3);
 
@@ -131,7 +132,7 @@ void AdminPages::loadPages(int mode)
         firstMovie += 8;
         int newLimit = lastMovie + 8;
         int c = 0;
-        while (c < lastMovie){
+        for(int i = 0; i < lastMovie; i++){
             string newMovie;
             getline(dataset, newMovie, '\n');
             c++;
@@ -161,7 +162,7 @@ void AdminPages::loadPages(int mode)
             int c = 0;
             lastMovie -= 8;
             firstMovie -= 8;
-            while (c < firstMovie){
+            for(int i= 0; i < firstMovie; i++){
                 string newMovie;
                 getline(dataset, newMovie, '\n');
                 c++;
@@ -316,12 +317,18 @@ void AdminPages::on_peli1_clicked()
 {
     MoviePreview eje;
     eje.setModal(true);
+    eje.setPelicula(PActual->getPelicula1());
+    eje.loadData();
     eje.exec();
 }
 
 void AdminPages::on_peli2_clicked()
 {
-    cout << "lol xd 2" << endl;
+    MoviePreview eje;
+    eje.setModal(true);
+    eje.setPelicula(PActual->getPelicula2());
+    eje.loadData();
+    eje.exec();
 }
 
 void AdminPages::on_NextPag_clicked()
@@ -350,4 +357,58 @@ void AdminPages::on_PrevPag_clicked()
     else{
         ui->PrevPag->show();
     }
+}
+
+void AdminPages::on_peli3_clicked()
+{
+    MoviePreview eje;
+    eje.setModal(true);
+    eje.setPelicula(PActual->getPelicula3());
+    eje.loadData();
+    eje.exec();
+}
+
+void AdminPages::on_peli4_clicked()
+{
+    MoviePreview eje;
+    eje.setModal(true);
+    eje.setPelicula(PActual->getPelicula4());
+    eje.loadData();
+    eje.exec();
+}
+
+void AdminPages::on_peli5_clicked()
+{
+    MoviePreview eje;
+    eje.setModal(true);
+    eje.setPelicula(PActual->getPelicula5());
+    eje.loadData();
+    eje.exec();
+}
+
+void AdminPages::on_peli6_clicked()
+{
+    MoviePreview eje;
+    eje.setModal(true);
+    eje.setPelicula(PActual->getPelicula6());
+    eje.loadData();
+    eje.exec();
+}
+
+void AdminPages::on_peli7_clicked()
+{
+    MoviePreview eje;
+    eje.setModal(true);
+    eje.setPelicula(PActual->getPelicula7());
+    eje.loadData();
+    eje.exec();
+}
+
+void AdminPages::on_peli8_clicked()
+{
+    MoviePreview eje;
+    eje.setModal(true);
+    eje.setPelicula(PActual->getPelicula8());
+    eje.loadData();
+    eje.exec();
 }

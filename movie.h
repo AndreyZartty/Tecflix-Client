@@ -11,7 +11,7 @@ using namespace std;
 class Movie
 {
 public:
-    Movie(QString Color, QString Director, QString Criticos, QString Duracion, QString LikesDirector, QString LikesActor3, QString Actor2, QString LikesActor1, QString Taquilla, QString Generos, QString Actor1, QString Titulo, QString VotosUsuarios, QString LikesCast, QString Actor3, QString Facenumber, QString Keywords, QString LinkImdb, QString Usuarios, QString Idioma, QString Pais, QString Clasificacion, QString Presupuesto, QString Year, QString LikesActor2, QString Puntuacion, QString AspectRatio, QString LikesPelicula);
+    Movie(QString Color, QString Director, QString Criticos, QString Duracion, QString LikesDirector, QString LikesActor3, QString Actor2, QString LikesActor1, QString Taquilla, QString Generos, QString Actor1, string Titulo, QString VotosUsuarios, QString LikesCast, QString Actor3, QString Facenumber, QString Keywords, QString LinkImdb, QString Usuarios, QString Idioma, QString Pais, QString Clasificacion, QString Presupuesto, QString Year, QString LikesActor2, QString Puntuacion, QString AspectRatio, QString LikesPelicula);
     Movie(string Line);
 
     QString getColor() ;
@@ -48,7 +48,7 @@ public:
     void setActor1(QString Actor1);
 
     QString getTitulo();
-    void setTitulo(QString Titulo);
+    void setTitulo(string Titulo);
 
     QString getVotosDeUsuarios();
     void setVotosDeUsuarios(QString VotosUsuarios);

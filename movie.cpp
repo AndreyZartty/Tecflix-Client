@@ -2,7 +2,7 @@
 
 /// Constructor
 
-Movie::Movie(QString Color, QString Director, QString Criticos, QString Duracion, QString LikesDirector, QString LikesActor3, QString Actor2, QString LikesActor1, QString Taquilla, QString Generos, QString Actor1, QString Titulo, QString VotosUsuarios, QString LikesCast, QString Actor3, QString Facenumber, QString Keywords, QString LinkImdb, QString Usuarios, QString Idioma, QString Pais, QString Clasificacion, QString Presupuesto, QString Year, QString LikesActor2, QString Puntuacion, QString AspectRatio, QString LikesPelicula)
+Movie::Movie(QString Color, QString Director, QString Criticos, QString Duracion, QString LikesDirector, QString LikesActor3, QString Actor2, QString LikesActor1, QString Taquilla, QString Generos, QString Actor1, string Titulo, QString VotosUsuarios, QString LikesCast, QString Actor3, QString Facenumber, QString Keywords, QString LinkImdb, QString Usuarios, QString Idioma, QString Pais, QString Clasificacion, QString Presupuesto, QString Year, QString LikesActor2, QString Puntuacion, QString AspectRatio, QString LikesPelicula)
 {
     setColor(Color);
     setDirector(Director);
@@ -53,7 +53,7 @@ Movie::Movie(string Line)
     temporal = Line.substr(index+1);
     Line = temporal;
     index = Line.find(coma);
-    setDuracion(QString::fromStdString(Line.substr(0,index)));
+    setDuracion(QString::fromStdString(Line.substr(0,index) + " min"));
 
     temporal = Line.substr(index+1);
     Line = temporal;
@@ -78,7 +78,7 @@ Movie::Movie(string Line)
     temporal = Line.substr(index+1);
     Line = temporal;
     index = Line.find(coma);
-    setTaquilla(QString::fromStdString(Line.substr(0,index)));
+    setTaquilla(QString::fromStdString("$ " + Line.substr(0,index)));
 
     temporal = Line.substr(index+1);
     Line = temporal;
@@ -93,7 +93,7 @@ Movie::Movie(string Line)
     temporal = Line.substr(index+1);
     Line = temporal;
     index = Line.find(coma);
-    setTitulo(QString::fromStdString(Line.substr(0,index)));
+    setTitulo(Line.substr(0,index));
 
     temporal = Line.substr(index+1);
     Line = temporal;
@@ -148,7 +148,7 @@ Movie::Movie(string Line)
     temporal = Line.substr(index+1);
     Line = temporal;
     index = Line.find(coma);
-    setPresupuesto(QString::fromStdString(Line.substr(0,index)));
+    setPresupuesto(QString::fromStdString("$ " + Line.substr(0,index)));
 
     temporal = Line.substr(index+1);
     Line = temporal;
@@ -163,7 +163,7 @@ Movie::Movie(string Line)
     temporal = Line.substr(index+1);
     Line = temporal;
     index = Line.find(coma);
-    setPuntuacion_imdb(QString::fromStdString(Line.substr(0,index)));
+    setPuntuacion_imdb(QString::fromStdString(Line.substr(0,index) + "/10"));
 
     temporal = Line.substr(index+1);
     Line = temporal;
@@ -292,9 +292,14 @@ QString Movie::getTitulo()
     return titulo;
 }
 
-void Movie::setTitulo(QString Titulo)
+void Movie::setTitulo(string Titulo)
 {
-    titulo = Titulo;
+    size_t Title = Titulo.find("|");
+    while(Title < Titulo.length()){
+        Titulo.replace(Title,1,",");
+        Title = Titulo.find("|");
+    }
+    titulo = QString::fromStdString(Titulo);
 }
 
 QString Movie::getVotosDeUsuarios()
@@ -504,8 +509,10 @@ void Movie::setPoster_Trailer(QString link)
         string tlink = "https://www.imdb.com" + html.substr(0,index-1);
         setTrailerLink(QString::fromStdString(tlink));
 
+
         html = html.substr(index);
     }
+
     search = "<img alt=";
     index = html.find(search);
     html = html.substr(index);
@@ -522,4 +529,5 @@ void Movie::setPoster_Trailer(QString link)
     index = html.find(search);
     html = html.substr(0, index-1);
     setPosterLink(QString::fromStdString(html));
+
 }

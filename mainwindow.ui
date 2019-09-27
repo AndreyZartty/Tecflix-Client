@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>Tecflix</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(30, 33, 30);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QToolButton" name="BotonPrueba">
     <property name="geometry">

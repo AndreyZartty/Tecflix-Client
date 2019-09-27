@@ -25,7 +25,8 @@ SOURCES += \
     mainwindow.cpp \
     movie.cpp \
     moviepreview.cpp \
-    pagina.cpp
+    pagina.cpp \
+    trailer.cpp
 
 HEADERS += \
     AdminPages.h \
@@ -33,12 +34,14 @@ HEADERS += \
     mainwindow.h \
     movie.h \
     moviepreview.h \
-    pagina.h
+    pagina.h \
+    trailer.h
 
 FORMS += \
     AdminPages.ui \
     mainwindow.ui \
-    moviepreview.ui
+    moviepreview.ui \
+    trailer.ui
 
 LIBS += -lcurl
 
