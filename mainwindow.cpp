@@ -31,19 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->centralwidget->setStyleSheet("QWidget { background-color: rgb(30, 33, 30); }");
 
-    /*player = new QMediaPlayer(this);
-    vw = new QWebEngineView(this);
-    this->setCentralWidget(vw);
-
-    vw->load(QUrl("https://www.imdb.com/video/imdb/vi1497349145/imdb/inline?ratio=1.77&rid=59N6RHKEJ2EMPFR9JFZA"));*/
-
-    QNetworkAccessManager* m_netwManager = new QNetworkAccessManager(this);
-    connect(m_netwManager, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished(QNetworkReply*)));
-
-    QUrl url("https://m.media-amazon.com/images/M/MV5BYWQ3NGM0NzQtZTNhOC00MDZjLTkyZGItZjViZTEzZmFlNDhhXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_UY268_CR9,0,182,268_AL_.jpg");
-    QNetworkRequest request(url);
-    m_netwManager->get(request);
-    QThread::msleep(500);
 }
 
 

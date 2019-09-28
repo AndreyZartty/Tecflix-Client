@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>700</height>
+    <height>730</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>900</width>
-    <height>700</height>
+    <height>730</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>1000</width>
-    <height>700</height>
+    <height>730</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -48,6 +48,30 @@
      <property name="topMargin">
       <number>0</number>
      </property>
+     <item>
+      <widget class="QLabel" name="Pagina">
+       <property name="font">
+        <font>
+         <family>MathJax_Main</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"> color : rgb(255, 255, 255); </string>
+       </property>
+       <property name="text">
+        <string>Página #</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <property name="leftMargin">
@@ -254,6 +278,42 @@
          </property>
          <property name="text">
           <string>Pagina Siguiente</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QPushButton" name="SaltarPag">
+         <property name="styleSheet">
+          <string notr="true"> color : rgb(255, 255, 255); </string>
+         </property>
+         <property name="text">
+          <string>Saltar a página:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="SpinPag">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"> color : rgb(255, 255, 255); </string>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhDigitsOnly</set>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>631</number>
          </property>
         </widget>
        </item>

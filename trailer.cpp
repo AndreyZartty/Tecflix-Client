@@ -40,6 +40,7 @@ void Trailer::makeTrailer(){
         vw->load(url);
         vw->show();
         ui->Message->setVisible(false);
+        QDesktopServices::openUrl(url);
     }
     else{
         ui->Message->setVisible(true);

@@ -13,7 +13,7 @@ AdminPages::AdminPages(QWidget *parent) :
     ui->setupUi(this);
     ui->centralwidget->setStyleSheet("QWidget { background-color: rgb(30, 33, 30); }");
 
-    loadPages(3);
+    loadPages(0);
 
     loadMovies();
 
@@ -58,45 +58,62 @@ void AdminPages::loadMovies()
     QNetworkRequest request3(url3);
     m_netwManager3->get(request3);
 
-    QNetworkAccessManager* m_netwManager4 = new QNetworkAccessManager(this);
-    connect(m_netwManager4, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished4(QNetworkReply*)));
+    if(PagActual != 631){
 
-    QByteArray P4 = PActual->getPelicula4()->getPosterLink().toUtf8();
-    QUrl url4 = QUrl::fromEncoded(P4,QUrl::StrictMode);
-    QNetworkRequest request4(url4);
-    m_netwManager4->get(request4);
+        ui->peli4->show();
+        ui->peli5->show();
+        ui->peli6->show();
+        ui->peli7->show();
+        ui->peli8->show();
 
-    QNetworkAccessManager* m_netwManager5 = new QNetworkAccessManager(this);
-    connect(m_netwManager5, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished5(QNetworkReply*)));
 
-    QByteArray P5 = PActual->getPelicula5()->getPosterLink().toUtf8();
-    QUrl url5 = QUrl::fromEncoded(P5,QUrl::StrictMode);
-    QNetworkRequest request5(url5);
-    m_netwManager5->get(request5);
+        QNetworkAccessManager* m_netwManager4 = new QNetworkAccessManager(this);
+        connect(m_netwManager4, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished4(QNetworkReply*)));
 
-    QNetworkAccessManager* m_netwManager6 = new QNetworkAccessManager(this);
-    connect(m_netwManager6, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished6(QNetworkReply*)));
+        QByteArray P4 = PActual->getPelicula4()->getPosterLink().toUtf8();
+        QUrl url4 = QUrl::fromEncoded(P4,QUrl::StrictMode);
+        QNetworkRequest request4(url4);
+        m_netwManager4->get(request4);
 
-    QByteArray P6 = PActual->getPelicula6()->getPosterLink().toUtf8();
-    QUrl url6 = QUrl::fromEncoded(P6,QUrl::StrictMode);
-    QNetworkRequest request6(url6);
-    m_netwManager6->get(request6);
+        QNetworkAccessManager* m_netwManager5 = new QNetworkAccessManager(this);
+        connect(m_netwManager5, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished5(QNetworkReply*)));
 
-    QNetworkAccessManager* m_netwManager7 = new QNetworkAccessManager(this);
-    connect(m_netwManager7, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished7(QNetworkReply*)));
+        QByteArray P5 = PActual->getPelicula5()->getPosterLink().toUtf8();
+        QUrl url5 = QUrl::fromEncoded(P5,QUrl::StrictMode);
+        QNetworkRequest request5(url5);
+        m_netwManager5->get(request5);
 
-    QByteArray P7 = PActual->getPelicula7()->getPosterLink().toUtf8();
-    QUrl url7 = QUrl::fromEncoded(P7,QUrl::StrictMode);
-    QNetworkRequest request7(url7);
-    m_netwManager7->get(request7);
+        QNetworkAccessManager* m_netwManager6 = new QNetworkAccessManager(this);
+        connect(m_netwManager6, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished6(QNetworkReply*)));
 
-    QNetworkAccessManager* m_netwManager8 = new QNetworkAccessManager(this);
-    connect(m_netwManager8, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished8(QNetworkReply*)));
+        QByteArray P6 = PActual->getPelicula6()->getPosterLink().toUtf8();
+        QUrl url6 = QUrl::fromEncoded(P6,QUrl::StrictMode);
+        QNetworkRequest request6(url6);
+        m_netwManager6->get(request6);
 
-    QByteArray P8 = PActual->getPelicula8()->getPosterLink().toUtf8();
-    QUrl url8 = QUrl::fromEncoded(P8,QUrl::StrictMode);
-    QNetworkRequest request8(url8);
-    m_netwManager8->get(request8);
+        QNetworkAccessManager* m_netwManager7 = new QNetworkAccessManager(this);
+        connect(m_netwManager7, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished7(QNetworkReply*)));
+
+        QByteArray P7 = PActual->getPelicula7()->getPosterLink().toUtf8();
+        QUrl url7 = QUrl::fromEncoded(P7,QUrl::StrictMode);
+        QNetworkRequest request7(url7);
+        m_netwManager7->get(request7);
+
+        QNetworkAccessManager* m_netwManager8 = new QNetworkAccessManager(this);
+        connect(m_netwManager8, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_netwManagerFinished8(QNetworkReply*)));
+
+        QByteArray P8 = PActual->getPelicula8()->getPosterLink().toUtf8();
+        QUrl url8 = QUrl::fromEncoded(P8,QUrl::StrictMode);
+        QNetworkRequest request8(url8);
+        m_netwManager8->get(request8);
+    }
+    else{
+        ui->peli4->hide();
+        ui->peli5->hide();
+        ui->peli6->hide();
+        ui->peli7->hide();
+        ui->peli8->hide();
+    }
 }
 
 void AdminPages::loadPages(int mode)
@@ -107,7 +124,7 @@ void AdminPages::loadPages(int mode)
     if (lastMovie==0){
         Pagina *newCurrent = new Pagina();
         int c = 8;
-        while (lastMovie < c){
+        for (int i = lastMovie; i < c; i++){
             string newMovie;
             getline(dataset, newMovie, '\n');
             Movie *movieN = new Movie(newMovie);
@@ -117,7 +134,7 @@ void AdminPages::loadPages(int mode)
         c += 8;
         PActual = newCurrent;
         Pagina *newNext = new Pagina();
-        while (lastMovie < c){
+        for (int i = lastMovie; i < c; i++){
             string newMovie;
             getline(dataset, newMovie, '\n');
             Movie *movieN = new Movie(newMovie);
@@ -125,36 +142,118 @@ void AdminPages::loadPages(int mode)
             lastMovie++;
         }
         PSiguiente = newNext;
+        ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
     }
     else if(mode == 1){  //MODO 1: SIGUIENTE
-        PAnterior = PActual;
-        PActual = PSiguiente;
-        firstMovie += 8;
-        int newLimit = lastMovie + 8;
-        int c = 0;
-        for(int i = 0; i < lastMovie; i++){
-            string newMovie;
-            getline(dataset, newMovie, '\n');
-            c++;
+        if (PagActual+1 == 630){
+            PAnterior = PActual;
+            PActual = PSiguiente;
+            firstMovie += 8;
+            int newLimit = lastMovie + 3;
+            int c = 0;
+            for(int i = 0; i < lastMovie; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                c++;
+            }
+            Pagina *newNext = new Pagina();
+            for(int i = lastMovie; i < newLimit; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newNext->addMovie(movieN);
+                lastMovie++;
+            }
+            PSiguiente = newNext;
+            PagActual++;
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
-        Pagina *newNext = new Pagina();
-        while (lastMovie < newLimit){
-            string newMovie;
-            getline(dataset, newMovie, '\n');
-            Movie *movieN = new Movie(newMovie);
-            newNext->addMovie(movieN);
-            lastMovie++;
+        else if(PagActual+1 == 631){
+            PAnterior = PActual;
+            PActual = PSiguiente;
+            PSiguiente = nullptr;
+            firstMovie += 8;
+            PagActual++;
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
-        PSiguiente = newNext;
+        else{
+            PAnterior = PActual;
+            PActual = PSiguiente;
+            firstMovie += 8;
+            int newLimit = lastMovie + 8;
+            int c = 0;
+            for(int i = 0; i < lastMovie; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                c++;
+            }
+            Pagina *newNext = new Pagina();
+            for(int i = lastMovie; i < newLimit; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newNext->addMovie(movieN);
+                lastMovie++;
+            }
+            PSiguiente = newNext;
+            PagActual++;
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+        }
+
 
     }
     else if(mode == 2){  //MODO 2: ANTERIOR
-        if(firstMovie == 0){
+        if(PagActual-1 == 1){
             PSiguiente = PActual;
             PActual = PAnterior;
             PAnterior = nullptr;
             lastMovie -= 8;
             firstMovie -= 8;
+            PagActual--;
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+        }
+        else if(PagActual == 631){
+            PSiguiente = PActual;
+            PActual = PAnterior;
+            int c = 0;
+            firstMovie -= 8;
+            for(int i= 0; i < firstMovie; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                c++;
+            }
+            Pagina *newPrev = new Pagina();
+            for(int i = 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev->addMovie(movieN);
+            }
+            PAnterior = newPrev;
+            PagActual--;
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+        }
+        else if(PagActual == 630){
+            PSiguiente = PActual;
+            PActual = PAnterior;
+            int c = 0;
+            lastMovie -= 3;
+            firstMovie -= 8;
+            for(int i= 0; i < firstMovie; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                c++;
+            }
+            Pagina *newPrev = new Pagina();
+            for(int i = 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev->addMovie(movieN);
+            }
+            PAnterior = newPrev;
+            PagActual--;
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
         else{
             PSiguiente = PActual;
@@ -168,16 +267,151 @@ void AdminPages::loadPages(int mode)
                 c++;
             }
             Pagina *newPrev = new Pagina();
-            c = 0;
-            while (c < 8){
+            for(int i = 0; i < 8; i++){
                 string newMovie;
                 getline(dataset, newMovie, '\n');
                 Movie *movieN = new Movie(newMovie);
                 newPrev->addMovie(movieN);
-                c++;
             }
             PAnterior = newPrev;
+            PagActual--;
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
+    }
+    else if(mode == 3){
+        int newPagNum = ui->SpinPag->value();
+        PagActual = newPagNum;
+        ui->SpinPag->setValue(1);
+
+
+        if(PagActual == 1){
+            firstMovie = ((newPagNum-1)*8) -8;
+            lastMovie = ((newPagNum+1)*8);
+
+            PAnterior = nullptr;
+
+            Pagina *newPrev2 = new Pagina();
+            for(int i= 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev2->addMovie(movieN);
+            }
+            PActual = newPrev2;
+
+            Pagina *newPrev3 = new Pagina();
+            for(int i= 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev3->addMovie(movieN);
+            }
+            PSiguiente = newPrev3;
+
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+        }
+        else if(PagActual == 630){
+            firstMovie = ((newPagNum-1)*8) -8;
+            lastMovie = ((newPagNum*8)+3);
+            for(int i= 0; i < firstMovie; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+            }
+            Pagina *newPrev1 = new Pagina();
+            for(int i= 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev1->addMovie(movieN);
+            }
+            PAnterior = newPrev1;
+
+            Pagina *newPrev2 = new Pagina();
+            for(int i= 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev2->addMovie(movieN);
+            }
+            PActual = newPrev2;
+
+            Pagina *newPrev3 = new Pagina();
+            for(int i= 0; i < 3; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev3->addMovie(movieN);
+            }
+            PSiguiente = newPrev3;
+
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+        }
+        else if(PagActual == 631){
+            firstMovie = ((newPagNum-1)*8) -8;
+            lastMovie = ((newPagNum*8)-5);
+            for(int i= 0; i < firstMovie; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+            }
+            Pagina *newPrev1 = new Pagina();
+            for(int i= 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev1->addMovie(movieN);
+            }
+            PAnterior = newPrev1;
+
+            Pagina *newPrev2 = new Pagina();
+            for(int i= 0; i < 3; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev2->addMovie(movieN);
+            }
+            PActual = newPrev2;
+
+            PSiguiente = nullptr;
+
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+        }
+        else{
+            firstMovie = ((newPagNum-1)*8) -8;
+            lastMovie = ((newPagNum+1)*8);
+            for(int i= 0; i < firstMovie; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+            }
+            Pagina *newPrev1 = new Pagina();
+            for(int i= 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev1->addMovie(movieN);
+            }
+            PAnterior = newPrev1;
+
+            Pagina *newPrev2 = new Pagina();
+            for(int i= 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev2->addMovie(movieN);
+            }
+            PActual = newPrev2;
+
+            Pagina *newPrev3 = new Pagina();
+            for(int i= 0; i < 8; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+                Movie *movieN = new Movie(newMovie);
+                newPrev3->addMovie(movieN);
+            }
+            PSiguiente = newPrev3;
+
+            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+        }
+
     }
     dataset.close();
 }
@@ -342,6 +576,12 @@ void AdminPages::on_NextPag_clicked()
     else{
         ui->PrevPag->show();
     }
+    if (PSiguiente == nullptr){
+        ui->NextPag->hide();
+    }
+    else{
+        ui->NextPag->show();
+    }
 }
 
 
@@ -356,6 +596,12 @@ void AdminPages::on_PrevPag_clicked()
     }
     else{
         ui->PrevPag->show();
+    }
+    if (PSiguiente == nullptr){
+        ui->NextPag->hide();
+    }
+    else{
+        ui->NextPag->show();
     }
 }
 
@@ -411,4 +657,23 @@ void AdminPages::on_peli8_clicked()
     eje.setPelicula(PActual->getPelicula8());
     eje.loadData();
     eje.exec();
+}
+
+void AdminPages::on_SaltarPag_clicked()
+{
+    loadPages(3);
+    loadMovies();
+    QThread::msleep(700);
+    if (PAnterior == nullptr){
+        ui->PrevPag->hide();
+    }
+    else{
+        ui->PrevPag->show();
+    }
+    if (PSiguiente == nullptr){
+        ui->NextPag->hide();
+    }
+    else{
+        ui->NextPag->show();
+    }
 }

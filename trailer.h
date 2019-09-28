@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <netinet/in.h>
+#include <QDesktopServices>
 
 namespace Ui {
 class Trailer;

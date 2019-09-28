@@ -59,6 +59,8 @@ private slots:
 
     void on_peli8_clicked();
 
+    void on_SaltarPag_clicked();
+
 private:
     Ui::AdminPages *ui;
     Pagina* PAnterior = nullptr;
@@ -67,6 +69,7 @@ private:
     ifstream dataset;
     int firstMovie = -8;
     int lastMovie = 0;
+    int PagActual = 1;
 
 };
 
