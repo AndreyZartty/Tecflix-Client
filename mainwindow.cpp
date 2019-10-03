@@ -45,5 +45,21 @@ void MainWindow::on_BotonPrueba_clicked()
 {
     hide();
     AdminPages *PagPrincipal = new AdminPages();
+    PagPrincipal->setInfiniteScroll(false);
+    PagPrincipal->prepareGUI();
+    PagPrincipal->loadPages(0);
+    PagPrincipal->loadMovies();
+    PagPrincipal->show();
+}
+
+
+void MainWindow::on_InfiniteScroll_clicked()
+{
+    hide();
+    AdminPages *PagPrincipal = new AdminPages();
+    PagPrincipal->setInfiniteScroll(true);
+    PagPrincipal->prepareGUI();
+    PagPrincipal->loadPages(0);
+    PagPrincipal->loadMovies();
     PagPrincipal->show();
 }

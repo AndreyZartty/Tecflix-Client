@@ -14,6 +14,8 @@
 #include "movie.h"
 #include <iostream>
 #include <fstream>
+#include <QKeyEvent>
+
 
 namespace Ui {
 class AdminPages;
@@ -28,6 +30,9 @@ public:
     ~AdminPages();
     void loadMovies();
     void loadPages(int mode);
+    void prepareGUI();
+    void setInfiniteScroll(bool status);
+    bool getInfiniteScroll();
 public slots:
     void slot_netwManagerFinished1(QNetworkReply *reply);
     void slot_netwManagerFinished2(QNetworkReply *reply);
@@ -61,6 +66,9 @@ private slots:
 
     void on_SaltarPag_clicked();
 
+    void keyPressEvent(QKeyEvent * event );
+
+
 private:
     Ui::AdminPages *ui;
     Pagina* PAnterior = nullptr;
@@ -70,6 +78,8 @@ private:
     int firstMovie = -8;
     int lastMovie = 0;
     int PagActual = 1;
+    bool InfiniteScroll = false;
+
 
 };
 

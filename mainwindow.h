@@ -31,6 +31,7 @@ public slots:
 
 private slots:
     void on_BotonPrueba_clicked();
+    void on_InfiniteScroll_clicked();
 
 private:
     Ui::MainWindow *ui;

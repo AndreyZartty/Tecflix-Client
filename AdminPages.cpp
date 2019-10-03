@@ -13,12 +13,6 @@ AdminPages::AdminPages(QWidget *parent) :
     ui->setupUi(this);
     ui->centralwidget->setStyleSheet("QWidget { background-color: rgb(30, 33, 30); }");
 
-    loadPages(0);
-
-    loadMovies();
-
-
-    QThread::msleep(2000);
 
     if (PAnterior == nullptr){
         ui->PrevPag->hide();
@@ -278,7 +272,7 @@ void AdminPages::loadPages(int mode)
             ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
     }
-    else if(mode == 3){
+    else if(mode == 3){ ///MODO: SALTO
         int newPagNum = ui->SpinPag->value();
         PagActual = newPagNum;
         ui->SpinPag->setValue(1);
@@ -413,7 +407,210 @@ void AdminPages::loadPages(int mode)
         }
 
     }
+    else if(mode == 4){ ///MODO: SCROLL INFINITO "N"
+
+        firstMovie += 4;
+
+        if(PAnterior == nullptr){
+            Pagina* newAnterior = new Pagina();
+            PAnterior = newAnterior;
+        }
+
+        PAnterior->setPelicula1(PAnterior->getPelicula5());
+        PAnterior->setPelicula2(PAnterior->getPelicula6());
+        PAnterior->setPelicula3(PAnterior->getPelicula7());
+        PAnterior->setPelicula4(PAnterior->getPelicula8());
+
+        PAnterior->setPelicula5(PActual->getPelicula1());
+        PAnterior->setPelicula6(PActual->getPelicula2());
+        PAnterior->setPelicula7(PActual->getPelicula3());
+        PAnterior->setPelicula8(PActual->getPelicula4());
+
+        PActual->setPelicula1(PActual->getPelicula5());
+        PActual->setPelicula2(PActual->getPelicula6());
+        PActual->setPelicula3(PActual->getPelicula7());
+        PActual->setPelicula4(PActual->getPelicula8());
+        PActual->setPelicula5(PSiguiente->getPelicula1());
+        PActual->setPelicula6(PSiguiente->getPelicula2());
+        PActual->setPelicula7(PSiguiente->getPelicula3());
+        PActual->setPelicula8(PSiguiente->getPelicula4());
+
+        PSiguiente->setPelicula1(PSiguiente->getPelicula5());
+        PSiguiente->setPelicula2(PSiguiente->getPelicula6());
+        PSiguiente->setPelicula3(PSiguiente->getPelicula7());
+        PSiguiente->setPelicula4(PSiguiente->getPelicula8());
+
+
+
+        for(int i = 0; i < lastMovie; i++){
+            string newMovie;
+            getline(dataset, newMovie, '\n');
+
+        }
+        string newMovie;
+        getline(dataset, newMovie, '\n');
+        Movie *movie1 = new Movie(newMovie);
+        PSiguiente->setPelicula5(movie1);
+
+        getline(dataset, newMovie, '\n');
+        Movie *movie2 = new Movie(newMovie);
+        PSiguiente->setPelicula6(movie2);
+
+        getline(dataset, newMovie, '\n');
+        Movie *movie3 = new Movie(newMovie);
+        PSiguiente->setPelicula7(movie3);
+
+        getline(dataset, newMovie, '\n');
+        Movie *movie4 = new Movie(newMovie);
+        PSiguiente->setPelicula8(movie4);
+
+        lastMovie += 4;
+
+    }
+    else if(mode == 5){ ///MODO: SCROLL INFINITO "B"
+        if(PAnterior == nullptr){
+            Pagina* newAnterior = new Pagina();
+            PAnterior = newAnterior;
+        }
+        else if(PAnterior->getPelicula5() == nullptr){
+            cout << "No pasa " << endl;
+        }
+        else if(PAnterior->getPelicula1() == nullptr){
+            firstMovie -= 4;
+            lastMovie -= 4;
+            PSiguiente->setPelicula8(PSiguiente->getPelicula4());
+            PSiguiente->setPelicula7(PSiguiente->getPelicula3());
+            PSiguiente->setPelicula6(PSiguiente->getPelicula2());
+            PSiguiente->setPelicula5(PSiguiente->getPelicula1());
+            PSiguiente->setPelicula4(PActual->getPelicula8());
+            PSiguiente->setPelicula3(PActual->getPelicula7());
+            PSiguiente->setPelicula2(PActual->getPelicula6());
+            PSiguiente->setPelicula1(PActual->getPelicula5());
+
+            PActual->setPelicula8(PActual->getPelicula4());
+            PActual->setPelicula7(PActual->getPelicula3());
+            PActual->setPelicula6(PActual->getPelicula2());
+            PActual->setPelicula5(PActual->getPelicula1());
+            PActual->setPelicula4(PAnterior->getPelicula8());
+            PActual->setPelicula3(PAnterior->getPelicula7());
+            PActual->setPelicula2(PAnterior->getPelicula6());
+            PActual->setPelicula1(PAnterior->getPelicula5());
+
+
+            PAnterior->setPelicula8(nullptr);
+            PAnterior->setPelicula7(nullptr);
+            PAnterior->setPelicula6(nullptr);
+            PAnterior->setPelicula5(nullptr);
+        }
+        else if(firstMovie == 0){
+            firstMovie -= 4;
+            lastMovie -= 4;
+            PSiguiente->setPelicula8(PSiguiente->getPelicula4());
+            PSiguiente->setPelicula7(PSiguiente->getPelicula3());
+            PSiguiente->setPelicula6(PSiguiente->getPelicula2());
+            PSiguiente->setPelicula5(PSiguiente->getPelicula1());
+            PSiguiente->setPelicula4(PActual->getPelicula8());
+            PSiguiente->setPelicula3(PActual->getPelicula7());
+            PSiguiente->setPelicula2(PActual->getPelicula6());
+            PSiguiente->setPelicula1(PActual->getPelicula5());
+
+            PActual->setPelicula8(PActual->getPelicula4());
+            PActual->setPelicula7(PActual->getPelicula3());
+            PActual->setPelicula6(PActual->getPelicula2());
+            PActual->setPelicula5(PActual->getPelicula1());
+            PActual->setPelicula4(PAnterior->getPelicula8());
+            PActual->setPelicula3(PAnterior->getPelicula7());
+            PActual->setPelicula2(PAnterior->getPelicula6());
+            PActual->setPelicula1(PAnterior->getPelicula5());
+
+            PAnterior->setPelicula8(PAnterior->getPelicula4());
+            PAnterior->setPelicula7(PAnterior->getPelicula3());
+            PAnterior->setPelicula6(PAnterior->getPelicula2());
+            PAnterior->setPelicula5(PAnterior->getPelicula1());
+            PAnterior->setPelicula4(nullptr);
+            PAnterior->setPelicula3(nullptr);
+            PAnterior->setPelicula2(nullptr);
+            PAnterior->setPelicula1(nullptr);
+        }
+        else{
+            firstMovie -= 4;
+            lastMovie -= 4;
+            PSiguiente->setPelicula8(PSiguiente->getPelicula4());
+            PSiguiente->setPelicula7(PSiguiente->getPelicula3());
+            PSiguiente->setPelicula6(PSiguiente->getPelicula2());
+            PSiguiente->setPelicula5(PSiguiente->getPelicula1());
+            PSiguiente->setPelicula4(PActual->getPelicula8());
+            PSiguiente->setPelicula3(PActual->getPelicula7());
+            PSiguiente->setPelicula2(PActual->getPelicula6());
+            PSiguiente->setPelicula1(PActual->getPelicula5());
+
+            PActual->setPelicula8(PActual->getPelicula4());
+            PActual->setPelicula7(PActual->getPelicula3());
+            PActual->setPelicula6(PActual->getPelicula2());
+            PActual->setPelicula5(PActual->getPelicula1());
+            PActual->setPelicula4(PAnterior->getPelicula8());
+            PActual->setPelicula3(PAnterior->getPelicula7());
+            PActual->setPelicula2(PAnterior->getPelicula6());
+            PActual->setPelicula1(PAnterior->getPelicula5());
+
+            PAnterior->setPelicula8(PAnterior->getPelicula4());
+            PAnterior->setPelicula7(PAnterior->getPelicula3());
+            PAnterior->setPelicula6(PAnterior->getPelicula2());
+            PAnterior->setPelicula5(PAnterior->getPelicula1());
+
+            for(int i = 0; i < firstMovie; i++){
+                string newMovie;
+                getline(dataset, newMovie, '\n');
+
+            }
+            string newMovie;
+            getline(dataset, newMovie, '\n');
+            Movie *movie1 = new Movie(newMovie);
+            PAnterior->setPelicula1(movie1);
+
+            getline(dataset, newMovie, '\n');
+            Movie *movie2 = new Movie(newMovie);
+            PAnterior->setPelicula2(movie2);
+
+            getline(dataset, newMovie, '\n');
+            Movie *movie3 = new Movie(newMovie);
+            PAnterior->setPelicula3(movie3);
+
+            getline(dataset, newMovie, '\n');
+            Movie *movie4 = new Movie(newMovie);
+            PAnterior->setPelicula4(movie4);
+        }
+
+    }
     dataset.close();
+}
+
+void AdminPages::prepareGUI()
+{
+    if(getInfiniteScroll() == false){
+        ui->NextPag->show();
+        ui->Pagina->setVisible(true);
+        ui->SpinPag->show();
+        ui->SaltarPag->show();
+
+    }
+    else{
+        ui->PrevPag->hide();
+        ui->NextPag->hide();
+        ui->Pagina->setVisible(false);
+        ui->SpinPag->hide();
+        ui->SaltarPag->hide();
+    }
+}
+
+void AdminPages::setInfiniteScroll(bool status)
+{
+    InfiniteScroll = status;
+}
+
+bool AdminPages::getInfiniteScroll()
+{
+    return InfiniteScroll;
 }
 
 void AdminPages::slot_netwManagerFinished1(QNetworkReply *reply)
@@ -676,4 +873,22 @@ void AdminPages::on_SaltarPag_clicked()
     else{
         ui->NextPag->show();
     }
+}
+
+void AdminPages::keyPressEvent(QKeyEvent *event)
+{
+    if (getInfiniteScroll()){
+        if(event->key() == 0x42){
+            loadPages(5);
+            loadMovies();
+            QThread::msleep(700);
+        }
+        else if(event->key() == 0x4e){
+            loadPages(4);
+            loadMovies();
+            QThread::msleep(700);
+        }
+
+    }
+
 }
