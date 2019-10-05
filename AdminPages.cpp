@@ -115,7 +115,7 @@ void AdminPages::loadPages(int mode)
     dataset.open("/home/andreyzartty/Documentos/Proyectos/TECflix/Tecflix-Client/movie_metadata.csv");
     string notAdd;
     getline(dataset,notAdd, '\n');
-    if (lastMovie==0){
+    if (mode==0){
         Pagina *newCurrent = new Pagina();
         int c = 8;
         for (int i = lastMovie; i < c; i++){
@@ -139,272 +139,339 @@ void AdminPages::loadPages(int mode)
         ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
     }
     else if(mode == 1){  //MODO 1: SIGUIENTE
-        if (PagActual+1 == 630){
-            PAnterior = PActual;
-            PActual = PSiguiente;
-            firstMovie += 8;
-            int newLimit = lastMovie + 3;
-            int c = 0;
-            for(int i = 0; i < lastMovie; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                c++;
+        if(getCompleteDataset() == false){
+            if (PagActual+1 == 630){
+                PAnterior = PActual;
+                PActual = PSiguiente;
+                firstMovie += 8;
+                int newLimit = lastMovie + 3;
+                int c = 0;
+                for(int i = 0; i < lastMovie; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    c++;
+                }
+                Pagina *newNext = new Pagina();
+                for(int i = lastMovie; i < newLimit; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newNext->addMovie(movieN);
+                    lastMovie++;
+                }
+                PSiguiente = newNext;
+                PagActual++;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            Pagina *newNext = new Pagina();
-            for(int i = lastMovie; i < newLimit; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newNext->addMovie(movieN);
-                lastMovie++;
+            else if(PagActual+1 == 631){
+                PAnterior = PActual;
+                PActual = PSiguiente;
+                PSiguiente = nullptr;
+                firstMovie += 8;
+                PagActual++;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            PSiguiente = newNext;
-            PagActual++;
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
-        }
-        else if(PagActual+1 == 631){
-            PAnterior = PActual;
-            PActual = PSiguiente;
-            PSiguiente = nullptr;
-            firstMovie += 8;
-            PagActual++;
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+            else{
+                PAnterior = PActual;
+                PActual = PSiguiente;
+                firstMovie += 8;
+                int newLimit = lastMovie + 8;
+                int c = 0;
+                for(int i = 0; i < lastMovie; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    c++;
+                }
+                Pagina *newNext = new Pagina();
+                for(int i = lastMovie; i < newLimit; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newNext->addMovie(movieN);
+                    lastMovie++;
+                }
+                PSiguiente = newNext;
+                PagActual++;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+            }
+
         }
         else{
-            PAnterior = PActual;
-            PActual = PSiguiente;
-            firstMovie += 8;
-            int newLimit = lastMovie + 8;
-            int c = 0;
-            for(int i = 0; i < lastMovie; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                c++;
+            if(PagActual+1 == 631){
+                PAnterior = PActual;
+                PActual = PSiguiente;
+                PSiguiente = nullptr;
+                firstMovie += 8;
+                PagActual++;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            Pagina *newNext = new Pagina();
-            for(int i = lastMovie; i < newLimit; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newNext->addMovie(movieN);
-                lastMovie++;
+            else{
+                PAnterior = PActual;
+                PActual = PSiguiente;
+                PagActual++;
+                PSiguiente = CompleteDatasetP.at(PagActual);
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            PSiguiente = newNext;
-            PagActual++;
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
+
 
 
     }
     else if(mode == 2){  //MODO 2: ANTERIOR
-        if(PagActual-1 == 1){
-            PSiguiente = PActual;
-            PActual = PAnterior;
-            PAnterior = nullptr;
-            lastMovie -= 8;
-            firstMovie -= 8;
-            PagActual--;
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
-        }
-        else if(PagActual == 631){
-            PSiguiente = PActual;
-            PActual = PAnterior;
-            int c = 0;
-            firstMovie -= 8;
-            for(int i= 0; i < firstMovie; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                c++;
+        if(getCompleteDataset() == false){
+            if(PagActual-1 == 1){
+                PSiguiente = PActual;
+                PActual = PAnterior;
+                PAnterior = nullptr;
+                lastMovie -= 8;
+                firstMovie -= 8;
+                PagActual--;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            Pagina *newPrev = new Pagina();
-            for(int i = 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev->addMovie(movieN);
+            else if(PagActual == 631){
+                PSiguiente = PActual;
+                PActual = PAnterior;
+                int c = 0;
+                firstMovie -= 8;
+                for(int i= 0; i < firstMovie; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    c++;
+                }
+                Pagina *newPrev = new Pagina();
+                for(int i = 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev->addMovie(movieN);
+                }
+                PAnterior = newPrev;
+                PagActual--;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            PAnterior = newPrev;
-            PagActual--;
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
-        }
-        else if(PagActual == 630){
-            PSiguiente = PActual;
-            PActual = PAnterior;
-            int c = 0;
-            lastMovie -= 3;
-            firstMovie -= 8;
-            for(int i= 0; i < firstMovie; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                c++;
+            else if(PagActual == 630){
+                PSiguiente = PActual;
+                PActual = PAnterior;
+                int c = 0;
+                lastMovie -= 3;
+                firstMovie -= 8;
+                for(int i= 0; i < firstMovie; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    c++;
+                }
+                Pagina *newPrev = new Pagina();
+                for(int i = 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev->addMovie(movieN);
+                }
+                PAnterior = newPrev;
+                PagActual--;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            Pagina *newPrev = new Pagina();
-            for(int i = 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev->addMovie(movieN);
+            else{
+                PSiguiente = PActual;
+                PActual = PAnterior;
+                int c = 0;
+                lastMovie -= 8;
+                firstMovie -= 8;
+                for(int i= 0; i < firstMovie; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    c++;
+                }
+                Pagina *newPrev = new Pagina();
+                for(int i = 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev->addMovie(movieN);
+                }
+                PAnterior = newPrev;
+                PagActual--;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            PAnterior = newPrev;
-            PagActual--;
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
         else{
-            PSiguiente = PActual;
-            PActual = PAnterior;
-            int c = 0;
-            lastMovie -= 8;
-            firstMovie -= 8;
-            for(int i= 0; i < firstMovie; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                c++;
+            if(PagActual-1 == 1){
+                PSiguiente = PActual;
+                PActual = PAnterior;
+                PAnterior = nullptr;
+                lastMovie -= 8;
+                firstMovie -= 8;
+                PagActual--;
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            Pagina *newPrev = new Pagina();
-            for(int i = 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev->addMovie(movieN);
+            else{
+                PSiguiente = PActual;
+                PActual = PAnterior;
+                PagActual--;
+                PAnterior = CompleteDatasetP.operator[](PagActual-2);
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            PAnterior = newPrev;
-            PagActual--;
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
+
     }
     else if(mode == 3){ ///MODO: SALTO
         int newPagNum = ui->SpinPag->value();
         PagActual = newPagNum;
         ui->SpinPag->setValue(1);
 
+        if(getCompleteDataset() == false){
+            if(PagActual == 1){
+                firstMovie = ((newPagNum-1)*8) -8;
+                lastMovie = ((newPagNum+1)*8);
 
-        if(PagActual == 1){
-            firstMovie = ((newPagNum-1)*8) -8;
-            lastMovie = ((newPagNum+1)*8);
+                PAnterior = nullptr;
 
-            PAnterior = nullptr;
+                Pagina *newPrev2 = new Pagina();
+                for(int i= 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev2->addMovie(movieN);
+                }
+                PActual = newPrev2;
 
-            Pagina *newPrev2 = new Pagina();
-            for(int i= 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev2->addMovie(movieN);
+                Pagina *newPrev3 = new Pagina();
+                for(int i= 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev3->addMovie(movieN);
+                }
+                PSiguiente = newPrev3;
+
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            PActual = newPrev2;
+            else if(PagActual == 630){
+                firstMovie = ((newPagNum-1)*8) -8;
+                lastMovie = ((newPagNum*8)+3);
+                for(int i= 0; i < firstMovie; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                }
+                Pagina *newPrev1 = new Pagina();
+                for(int i= 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev1->addMovie(movieN);
+                }
+                PAnterior = newPrev1;
 
-            Pagina *newPrev3 = new Pagina();
-            for(int i= 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev3->addMovie(movieN);
-            }
-            PSiguiente = newPrev3;
+                Pagina *newPrev2 = new Pagina();
+                for(int i= 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev2->addMovie(movieN);
+                }
+                PActual = newPrev2;
 
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
-        }
-        else if(PagActual == 630){
-            firstMovie = ((newPagNum-1)*8) -8;
-            lastMovie = ((newPagNum*8)+3);
-            for(int i= 0; i < firstMovie; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-            }
-            Pagina *newPrev1 = new Pagina();
-            for(int i= 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev1->addMovie(movieN);
-            }
-            PAnterior = newPrev1;
+                Pagina *newPrev3 = new Pagina();
+                for(int i= 0; i < 3; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev3->addMovie(movieN);
+                }
+                PSiguiente = newPrev3;
 
-            Pagina *newPrev2 = new Pagina();
-            for(int i= 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev2->addMovie(movieN);
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            PActual = newPrev2;
+            else if(PagActual == 631){
+                firstMovie = ((newPagNum-1)*8) -8;
+                lastMovie = ((newPagNum*8)-5);
+                for(int i= 0; i < firstMovie; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                }
+                Pagina *newPrev1 = new Pagina();
+                for(int i= 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev1->addMovie(movieN);
+                }
+                PAnterior = newPrev1;
 
-            Pagina *newPrev3 = new Pagina();
-            for(int i= 0; i < 3; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev3->addMovie(movieN);
+                Pagina *newPrev2 = new Pagina();
+                for(int i= 0; i < 3; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev2->addMovie(movieN);
+                }
+                PActual = newPrev2;
+
+                PSiguiente = nullptr;
+
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            PSiguiente = newPrev3;
+            else{
+                firstMovie = ((newPagNum-1)*8) -8;
+                lastMovie = ((newPagNum+1)*8);
+                for(int i= 0; i < firstMovie; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                }
+                Pagina *newPrev1 = new Pagina();
+                for(int i= 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev1->addMovie(movieN);
+                }
+                PAnterior = newPrev1;
 
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
-        }
-        else if(PagActual == 631){
-            firstMovie = ((newPagNum-1)*8) -8;
-            lastMovie = ((newPagNum*8)-5);
-            for(int i= 0; i < firstMovie; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
+                Pagina *newPrev2 = new Pagina();
+                for(int i= 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev2->addMovie(movieN);
+                }
+                PActual = newPrev2;
+
+                Pagina *newPrev3 = new Pagina();
+                for(int i= 0; i < 8; i++){
+                    string newMovie;
+                    getline(dataset, newMovie, '\n');
+                    Movie *movieN = new Movie(newMovie);
+                    newPrev3->addMovie(movieN);
+                }
+                PSiguiente = newPrev3;
+
+                ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
             }
-            Pagina *newPrev1 = new Pagina();
-            for(int i= 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev1->addMovie(movieN);
-            }
-            PAnterior = newPrev1;
-
-            Pagina *newPrev2 = new Pagina();
-            for(int i= 0; i < 3; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev2->addMovie(movieN);
-            }
-            PActual = newPrev2;
-
-            PSiguiente = nullptr;
-
-            ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
         }
         else{
-            firstMovie = ((newPagNum-1)*8) -8;
-            lastMovie = ((newPagNum+1)*8);
-            for(int i= 0; i < firstMovie; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-            }
-            Pagina *newPrev1 = new Pagina();
-            for(int i= 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev1->addMovie(movieN);
-            }
-            PAnterior = newPrev1;
+            if(PagActual == 1){
+                PAnterior = nullptr;
+                PActual = CompleteDatasetP.operator[](PagActual-1);
+                PSiguiente = CompleteDatasetP.operator[](PagActual);
 
-            Pagina *newPrev2 = new Pagina();
-            for(int i= 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev2->addMovie(movieN);
             }
-            PActual = newPrev2;
+            else if(PagActual == 631){
+                PSiguiente = nullptr;
+                PActual = CompleteDatasetP.operator[](PagActual-1);
+                PAnterior = CompleteDatasetP.operator[](PagActual-2);
 
-            Pagina *newPrev3 = new Pagina();
-            for(int i= 0; i < 8; i++){
-                string newMovie;
-                getline(dataset, newMovie, '\n');
-                Movie *movieN = new Movie(newMovie);
-                newPrev3->addMovie(movieN);
             }
-            PSiguiente = newPrev3;
+            else{
+                PAnterior = CompleteDatasetP.operator[](PagActual-2);
+                PActual = CompleteDatasetP.operator[](PagActual-1);
+                PSiguiente = CompleteDatasetP.operator[](PagActual);
 
+            }
             ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
+
         }
+
+
 
     }
     else if(mode == 4){ ///MODO: SCROLL INFINITO "N"
@@ -580,6 +647,46 @@ void AdminPages::loadPages(int mode)
             Movie *movie4 = new Movie(newMovie);
             PAnterior->setPelicula4(movie4);
         }
+
+    }
+    else if(mode == 6){  ///MODO: CARGAR TODO EL DATASET
+        int c= 0;
+        while(dataset.good()){
+            string newMovie;
+            getline(dataset, newMovie, '\n');
+            Movie *movie1 = new Movie(newMovie);
+            CompleteDatasetM.push_back(movie1);
+            c++;
+        }
+
+        cout << "Peliculas " <<  CompleteDatasetM.size() << endl;
+        int c_pages = CompleteDatasetM.size()/ 8;
+        double pagesR = CompleteDatasetM.size()/ 8.00;
+
+        if(pagesR>c_pages){
+            for(int i = 0; i < c_pages; i++){
+                Pagina* newPage = new Pagina();
+                for(int j = lastMovie; j<lastMovie+8; j++){
+                    newPage->addMovie(CompleteDatasetM.operator[](j));
+                }
+                CompleteDatasetP.push_back(newPage);
+                lastMovie += 8;
+            }
+            cout << "Paginas 1 " <<  CompleteDatasetP.size() << endl;
+            Pagina* newPage = new Pagina();
+            for(int i = c_pages*8; i < CompleteDatasetM.size(); i++){
+                newPage->addMovie(CompleteDatasetM.operator[](i));
+            }
+            CompleteDatasetP.push_back(newPage);
+            cout << "Paginas 2 " <<  CompleteDatasetP.size() << endl;
+
+        }
+
+        PActual = CompleteDatasetP.operator[](PagActual-1);
+        PSiguiente = CompleteDatasetP.operator[](PagActual);
+
+        cout << CompleteDatasetM.size() << "/" << CompleteDatasetP.size() << endl;
+        ui->Pagina->setText(QString::fromStdString("Página " + std::to_string(PagActual)));
 
     }
     dataset.close();
@@ -892,3 +999,14 @@ void AdminPages::keyPressEvent(QKeyEvent *event)
     }
 
 }
+
+bool AdminPages::getCompleteDataset()
+{
+    return CompleteDataset;
+}
+
+void AdminPages::setCompleteDataset(bool state)
+{
+    CompleteDataset = state;
+}
+

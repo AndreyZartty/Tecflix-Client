@@ -1,4 +1,5 @@
 #include "movie.h"
+#include <QThread>
 
 /// Constructor
 
@@ -487,8 +488,11 @@ void Movie::setPosterLink(QString Poster)
 
 void Movie::setPoster_Trailer(QString link)
 {
-    CurlObj dataHTML(link.toStdString());
+    QThread::msleep(350);
+    dataHTML.setUrl(link.toStdString());
+    dataHTML.DoRequest();
     string html = dataHTML.getData();
+
 
     string search = "embedUrl";
     size_t index = html.find(search);
@@ -515,19 +519,43 @@ void Movie::setPoster_Trailer(QString link)
 
     search = "<img alt=";
     index = html.find(search);
-    html = html.substr(index);
 
-    search = "poster";
-    index = html.find(search);
-    html = html.substr(index);
+    if(index > html.size()){
+        string Plink = "https://i.imgur.com/VbvVAOy.jpg?2";
+        setPosterLink(QString::fromStdString(Plink));
+    }
+    else{
+        html = html.substr(index);
 
-    search = "src=";
-    index = html.find(search);
-    html = html.substr(index+5);
+        search = "poster";
+        index = html.find(search);
 
-    search = " />";
-    index = html.find(search);
-    html = html.substr(0, index-1);
-    setPosterLink(QString::fromStdString(html));
+        if(index > html.size()){
+            string Plink = "https://i.imgur.com/VbvVAOy.jpg?2";
+            setPosterLink(QString::fromStdString(Plink));
+        }
+        else{
+            html = html.substr(index);
+
+            search = "src=";
+            index = html.find(search);
+
+            if(index > html.size()){
+                string Plink = "https://i.imgur.com/VbvVAOy.jpg?2";
+                setPosterLink(QString::fromStdString(Plink));
+            }
+            else{
+                html = html.substr(index+5);
+
+                search = " />";
+                index = html.find(search);
+                html = html.substr(0, index-1);
+                setPosterLink(QString::fromStdString(html));
+
+            }
+
+
+        }
+    }
 
 }

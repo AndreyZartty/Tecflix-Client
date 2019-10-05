@@ -33,6 +33,11 @@ public:
     void prepareGUI();
     void setInfiniteScroll(bool status);
     bool getInfiniteScroll();
+
+
+    bool getCompleteDataset();
+    void setCompleteDataset(bool state);
+
 public slots:
     void slot_netwManagerFinished1(QNetworkReply *reply);
     void slot_netwManagerFinished2(QNetworkReply *reply);
@@ -79,6 +84,9 @@ private:
     int lastMovie = 0;
     int PagActual = 1;
     bool InfiniteScroll = false;
+    bool CompleteDataset = false;
+    vector<Pagina*> CompleteDatasetP;
+    vector<Movie*> CompleteDatasetM;
 
 
 };

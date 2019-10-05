@@ -43,6 +43,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_BotonPrueba_clicked()
 {
+    auto start = std::chrono::system_clock::now();
     hide();
     AdminPages *PagPrincipal = new AdminPages();
     PagPrincipal->setInfiniteScroll(false);
@@ -50,6 +51,12 @@ void MainWindow::on_BotonPrueba_clicked()
     PagPrincipal->loadPages(0);
     PagPrincipal->loadMovies();
     PagPrincipal->show();
+    auto end = std::chrono::system_clock::now();
+
+    std::chrono::duration<float,std::milli> duration =end - start;
+
+    cout << "Duracion(Paginacion): " << duration.count() <<endl;
+
 }
 
 
@@ -62,4 +69,22 @@ void MainWindow::on_InfiniteScroll_clicked()
     PagPrincipal->loadPages(0);
     PagPrincipal->loadMovies();
     PagPrincipal->show();
+}
+
+void MainWindow::on_toolButton_clicked()
+{
+    auto start = std::chrono::system_clock::now();
+    hide();
+    AdminPages *PagPrincipal = new AdminPages();
+    PagPrincipal->setInfiniteScroll(false);
+    PagPrincipal->setCompleteDataset(true);
+    PagPrincipal->prepareGUI();
+    PagPrincipal->loadPages(6);
+    PagPrincipal->loadMovies();
+    PagPrincipal->show();
+    auto end = std::chrono::system_clock::now();
+
+    std::chrono::duration<float,std::milli> duration =end - start;
+
+    cout << "Duracion(Cargar todo el dataset): " << duration.count() <<endl;
 }

@@ -15,6 +15,7 @@
 #include <netinet/in.h>
 
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -32,6 +33,8 @@ public slots:
 private slots:
     void on_BotonPrueba_clicked();
     void on_InfiniteScroll_clicked();
+
+    void on_toolButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -14,15 +14,18 @@ using namespace std;
 class CurlObj {
 
 public:
-    CurlObj (string url);
-
     static int curlWriter(char *data, int size, int nmemb, string *buffer);
 
     string getData();
 
+    void setUrl(string URL);
+
+    void DoRequest();
+
 protected:
     CURL * curl;
     string curlBuffer;
+    string url;
 };
 
 #endif // CURLOBJ_H

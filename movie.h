@@ -137,6 +137,8 @@ private:
     QString FB_likes_pelicula;
     QString trailerLink;
     QString posterLink;
+
+    CurlObj dataHTML;
 };
 
 #endif // MOVIE_H
